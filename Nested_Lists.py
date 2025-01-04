@@ -20,18 +20,17 @@
 
 
 # Enter your code here. Read input from STDIN. Print output to STDOUT
-N = int(raw_input())
-
+n = int(input())
 students = []
-for i in range(2*N):
-    students.append(raw_input().split())
-grades = {}
-for j in range(0, len(students), 2):
-    grades[students[j][0]] = float(students[j + 1][0])
-result = []
-num_to_match = sorted(set(grades.values()))[1]
-for pupil in grades.keys():
-    if grades[pupil] == num_to_match:
-        result.append(pupil)
-for k in sorted(result):
-    print k
+for _ in range(n):
+    name = input()
+    grade = float(input())
+    students.append([name, grade])
+
+unique_grades = sorted(set(student[1] for student in students))
+second_lowest_grade = unique_grades[1]
+second_lowest_students = [student[0] for student in students if student[1] == second_lowest_grade]
+second_lowest_students.sort()
+
+for student in second_lowest_students:
+    print(student)
